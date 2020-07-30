@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>zhysunny-redis</module>
+        <module>zhysunny-spring-boot</module>
     </modules>
 
     <properties>
@@ -25,6 +26,8 @@
         <powermock.version>2.0.4</powermock.version>
         <!-- 辅助工具 -->
         <lombok.version>1.18.10</lombok.version>
+        <!-- jackson -->
+        <jackson.version>2.10.0</jackson.version>
     </properties>
 
     <repositories>
@@ -66,6 +69,23 @@
                 <version>29.0-jre</version>
             </dependency>
             <!-- utils end -->
+            <!-- jackson start -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- jackson end -->
         </dependencies>
     </dependencyManagement>
 
