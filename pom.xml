@@ -28,6 +28,7 @@
         <lombok.version>1.18.10</lombok.version>
         <!-- jackson -->
         <jackson.version>2.10.0</jackson.version>
+        <fastjson.version>1.2.67</fastjson.version>
     </properties>
 
     <repositories>
@@ -40,35 +41,13 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- commons start -->
+            <!-- zhysunny start -->
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.9</version>
+                <groupId>com.zhysunny.utils</groupId>
+                <artifactId>zhysunny-io</artifactId>
+                <version>${zhysunny.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>1.3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>4.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-compress</artifactId>
-                <version>1.9</version>
-            </dependency>
-            <!-- commons end -->
-            <!-- utils start -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>29.0-jre</version>
-            </dependency>
-            <!-- utils end -->
+            <!-- zhysunny end -->
             <!-- jackson start -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -86,17 +65,58 @@
                 <version>${jackson.version}</version>
             </dependency>
             <!-- jackson end -->
+            <!-- fastjson start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- fastjson end -->
+            <!-- metrics start -->
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>3.1.2</version>
+            </dependency>
+            <!-- metrics end -->
+            <!-- rest start -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.7</version>
+            </dependency>
+            <!-- rest end -->
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!-- zhysunny start -->
+        <!-- commons start -->
         <dependency>
-            <groupId>com.zhysunny.utils</groupId>
-            <artifactId>zhysunny-io</artifactId>
-            <version>${zhysunny.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
         </dependency>
-        <!-- zhysunny end -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+        <!-- commons end -->
         <!-- junit start -->
         <dependency>
             <groupId>junit</groupId>
