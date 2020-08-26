@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>zhysunny-redis</module>
         <module>zhysunny-spring-boot</module>
     </modules>
 
@@ -29,6 +28,9 @@
         <!-- jackson -->
         <jackson.version>2.10.0</jackson.version>
         <fastjson.version>1.2.67</fastjson.version>
+        <!-- 中间件 -->
+        <redis.version>2.9.3</redis.version>
+        <kafka.version>0.9.0.1</kafka.version>
     </properties>
 
     <repositories>
@@ -45,6 +47,16 @@
             <dependency>
                 <groupId>com.zhysunny.utils</groupId>
                 <artifactId>zhysunny-io</artifactId>
+                <version>${zhysunny.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zhysunny.utils</groupId>
+                <artifactId>zhysunny-common</artifactId>
+                <version>${zhysunny.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zhysunny.utils</groupId>
+                <artifactId>zhysunny-rest</artifactId>
                 <version>${zhysunny.version}</version>
             </dependency>
             <!-- zhysunny end -->
@@ -65,13 +77,6 @@
                 <version>${jackson.version}</version>
             </dependency>
             <!-- jackson end -->
-            <!-- fastjson start -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <!-- fastjson end -->
             <!-- metrics start -->
             <dependency>
                 <groupId>io.dropwizard.metrics</groupId>
@@ -86,6 +91,27 @@
                 <version>4.5.7</version>
             </dependency>
             <!-- rest end -->
+            <!-- kafka start -->
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka_2.11</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <!-- kafka end -->
+            <!-- redis start -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+            <!-- redis end -->
+            <!-- logger start -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+            <!-- logger end -->
         </dependencies>
     </dependencyManagement>
 
