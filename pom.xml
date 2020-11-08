@@ -51,11 +51,6 @@
             </dependency>
             <dependency>
                 <groupId>com.zhysunny.utils</groupId>
-                <artifactId>zhysunny-common</artifactId>
-                <version>${zhysunny.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zhysunny.utils</groupId>
                 <artifactId>zhysunny-rest</artifactId>
                 <version>${zhysunny.version}</version>
             </dependency>
@@ -105,17 +100,15 @@
                 <version>${redis.version}</version>
             </dependency>
             <!-- redis end -->
-            <!-- logger start -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
-            </dependency>
-            <!-- logger end -->
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.zhysunny.utils</groupId>
+            <artifactId>zhysunny-common</artifactId>
+            <version>${zhysunny.version}</version>
+        </dependency>
         <!-- commons start -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -134,6 +127,16 @@
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
             <version>1.9</version>
         </dependency>
@@ -143,6 +146,14 @@
             <version>29.0-jre</version>
         </dependency>
         <!-- commons end -->
+        <!-- logger start -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- logger end -->
         <!-- junit start -->
         <dependency>
             <groupId>junit</groupId>
