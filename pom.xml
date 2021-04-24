@@ -6,8 +6,8 @@
 
     <groupId>com.zhysunny.pom</groupId>
     <artifactId>zhysunny-parent</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
     <modules>
         <module>zhysunny-spring-boot</module>
     </modules>
@@ -70,6 +70,16 @@
                 <groupId>com.zhysunny</groupId>
                 <artifactId>zkapi</artifactId>
                 <version>${zkapi.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.101tec</groupId>
+                        <artifactId>zkclient</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
 
