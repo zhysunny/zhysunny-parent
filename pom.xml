@@ -13,32 +13,39 @@
     </modules>
 
     <properties>
-        <jdk.version>1.8</jdk.version>
+        <!-- 编译环境 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <compiler.encoding>UTF-8</compiler.encoding>
         <argLine>-Dfile.encoding=UTF-8</argLine>
         <scala.version>2.11</scala.version>
         <scala.library.version>2.11.8</scala.library.version>
+
         <zhysunny.version>1.1</zhysunny.version>
         <zkapi.version>1.0.0</zkapi.version>
         <!-- 单元测试 -->
         <junit.version>4.9</junit.version>
-        <assertj.version>3.9.1</assertj.version>
+        <assertj.version>3.19.0</assertj.version>
         <powermock.version>2.0.4</powermock.version>
         <!-- 辅助工具 -->
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
+        <logger.version>2.17.1</logger.version>
+        <slf4j.version>1.7.32</slf4j.version>
         <!-- jackson -->
         <jackson.version>2.10.0</jackson.version>
         <fastjson.version>1.2.9</fastjson.version>
-        <!-- 中间件 -->
-        <redis.version>2.9.3</redis.version>
-        <kafka.version>0.9.0.1</kafka.version>
+        <!-- 中间件、大数据 -->
+        <redis.version>3.7.0</redis.version>
+        <kafka.version>2.8.1</kafka.version>
+        <elasticsearch.version>7.14.0</elasticsearch.version>
+        <hbase.version>2.2.5</hbase.version>
         <!-- 数据库 -->
         <mysql.version>8.0.21</mysql.version>
         <mybatis.version>3.5.6</mybatis.version>
         <!-- zookeeper -->
-        <zookeeper.version>3.4.14</zookeeper.version>
+        <zookeeper.version>3.6.3</zookeeper.version>
         <zkclient.version>0.10</zkclient.version>
-        <curator.version>4.2.0</curator.version>
+        <curator.version>5.2.0</curator.version>
     </properties>
 
     <repositories>
@@ -51,6 +58,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- zhysunny start -->
             <dependency>
                 <groupId>com.zhysunny.utils</groupId>
                 <artifactId>zhysunny-io</artifactId>
@@ -81,8 +89,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-
+            <!-- zhysunny end -->
             <!-- json start -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -112,17 +119,29 @@
                 <version>3.1.2</version>
             </dependency>
             <!-- metrics end -->
-            <!-- rest start -->
+            <!-- http start -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>4.5.7</version>
             </dependency>
-            <!-- rest end -->
+            <!-- http end -->
+            <!-- spark start -->
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-mllib_2.10</artifactId>
+                <version>2.2.2</version>
+            </dependency>
+            <!-- spark end -->
             <!-- kafka start -->
             <dependency>
                 <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka_2.11</artifactId>
+                <artifactId>kafka_2.12</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
                 <version>${kafka.version}</version>
             </dependency>
             <!-- kafka end -->
@@ -133,6 +152,40 @@
                 <version>${redis.version}</version>
             </dependency>
             <!-- redis end -->
+            <!-- hbase start -->
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-client</artifactId>
+                <version>${hbase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-common</artifactId>
+                <version>${hbase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-metrics</artifactId>
+                <version>${hbase.version}</version>
+            </dependency>
+            <!-- hbase end -->
+            <!-- elasticsearch start -->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch-cli</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch-core</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <!-- elasticsearch end -->
             <!-- 数据库 start -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -140,9 +193,34 @@
                 <version>${mysql.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.2.23</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>oracle-jdbc</artifactId>
+                <version>7</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>io.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>4.0.1</version>
             </dependency>
             <!-- 数据库 end -->
             <!-- zookeeper start -->
@@ -184,9 +262,54 @@
             <!-- zookeeper end -->
             <!-- commons start -->
             <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.4</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbutils</groupId>
+                <artifactId>commons-dbutils</artifactId>
+                <version>1.7</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>1.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>3.8.0</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.9</version>
+                <version>3.12.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.10.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-email</artifactId>
+                <version>1.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-configuration2</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.9</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -204,49 +327,200 @@
                 <version>3.6.1</version>
             </dependency>
             <dependency>
-                <groupId>commons-cli</groupId>
-                <artifactId>commons-cli</artifactId>
-                <version>1.4</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>1.8</version>
             </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>1.9</version>
+                <version>1.15</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
-                <version>1.9</version>
+                <version>1.21</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-vfs2</artifactId>
+                <version>2.7.0</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>29.0-jre</version>
+                <version>30.1.1-jre</version>
             </dependency>
             <!-- commons end -->
+            <!-- logger start -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${logger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${logger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${logger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!-- logger end -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>2.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz-jobs</artifactId>
+                <version>2.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>0.1.53</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ethz.ganymed</groupId>
+                <artifactId>ganymed-ssh2</artifactId>
+                <version>build210</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ant</groupId>
+                <artifactId>ant</artifactId>
+                <version>1.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>4.1.2</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>poi-ooxml-schemas</artifactId>
+                        <groupId>org.apache.poi</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- 3.9版本出现2006版的xlsx文件无法读取问题 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>2.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>4.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>1.29</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-core</artifactId>
+                <version>1.6.2</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>1.1.22</version>
+                <artifactId>easyexcel</artifactId>
+                <version>2.2.10</version>
             </dependency>
-            <!-- 数据库 start -->
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.9.7</version>
             </dependency>
-            <!-- 数据库 end -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>2.0.24</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>4.5.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.14</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore-nio</artifactId>
+                <version>4.4.14</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!-- logger start -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <!-- logger end -->
         <!-- junit start -->
         <dependency>
             <groupId>junit</groupId>
@@ -287,8 +561,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <encoding>${compiler.encoding}</encoding>
                 </configuration>
             </plugin>
