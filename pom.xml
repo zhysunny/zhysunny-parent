@@ -224,6 +224,18 @@
                 <version>29.0-jre</version>
             </dependency>
             <!-- commons end -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.22</version>
+            </dependency>
+            <!-- 数据库 start -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- 数据库 end -->
         </dependencies>
     </dependencyManagement>
 
